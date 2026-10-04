@@ -1,0 +1,1519 @@
+/* ==========================================================================
+   VISHNUVERSE — DEEP COSMOS & NEBULA STARLIGHT DESIGN SYSTEM
+   Aesthetic: Interstellar Deep Space • Cosmic Nebula Glow • Luxury Dark UI
+   Author: Vishnuvarthan R
+   ========================================================================== */
+
+/* ==========================================================================
+   01 — COSMIC DESIGN TOKENS
+   ========================================================================== */
+
+:root {
+    /* Deep Space Void Hierarchy */
+    --cosmos-void: #02050e;
+    --cosmos-abyss: #050a18;
+    --cosmos-surface: #0a1126;
+    --cosmos-card: rgba(12, 19, 41, 0.72);
+    --cosmos-card-hover: rgba(18, 28, 58, 0.85);
+
+    /* Nebula & Celestial Accent Palette */
+    --nebula-cyan: #38bdf8;
+    --nebula-blue: #3b82f6;
+    --nebula-violet: #8b5cf6;
+    --starlight-pure: #ffffff;
+    --stardust-silver: #e2e8f0;
+
+    /* Typographic Spectrum */
+    --text-pure: #ffffff;
+    --text-primary: #edf2f7;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --text-dim: #334155;
+
+    /* Starlight Specular Glass Rims */
+    --border-starlight: rgba(255, 255, 255, 0.08);
+    --border-nebula: rgba(56, 189, 248, 0.25);
+    --border-hover: rgba(139, 92, 246, 0.4);
+
+    /* Deep Space Volumetric Shadows */
+    --shadow-chassis: 
+        0 20px 50px -10px rgba(0, 0, 0, 0.85),
+        0 0 35px -5px rgba(59, 130, 246, 0.15),
+        inset 0 1px 1px rgba(255, 255, 255, 0.12);
+    --shadow-elevated: 
+        0 30px 80px -15px rgba(0, 0, 0, 0.95),
+        0 0 50px -5px rgba(139, 92, 246, 0.28),
+        inset 0 1px 1px rgba(255, 255, 255, 0.2);
+
+    /* Dimensional Constants */
+    --max-width: 1340px;
+    --radius-pill: 9999px;
+    --radius-card: 26px;
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-smooth: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ==========================================================================
+   02 — FOUNDATION RESET & BASE STYLES
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--cosmos-void);
+    color: var(--text-primary);
+    font-family:
+        "Inter",
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+    line-height: 1.65;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Deep Space Scrollbar */
+::-webkit-scrollbar {
+    width: 7px;
+}
+::-webkit-scrollbar-track {
+    background: var(--cosmos-void);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.25);
+    border-radius: var(--radius-pill);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(56, 189, 248, 0.5);
+}
+
+/* Pulsar Cyan Selection */
+::selection {
+    background: rgba(56, 189, 248, 0.35);
+    color: #ffffff;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    border: none;
+    background: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/* ==========================================================================
+   03 — ATMOSPHERIC NEBULA & INTERSTELLAR DUST BACKGROUND
+   ========================================================================== */
+
+/* Multi-Layered Cosmic Nebula Fog */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(59, 130, 246, 0.12) 0%,
+            transparent 45%
+        ),
+        radial-gradient(
+            circle at 85% 25%,
+            rgba(139, 92, 246, 0.11) 0%,
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 50% 65%,
+            rgba(56, 189, 248, 0.08) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at 75% 85%,
+            rgba(99, 102, 241, 0.09) 0%,
+            transparent 40%
+        );
+}
+
+/* Stardust Coordinate Grid */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 76px 76px;
+    mask-image: radial-gradient(
+        ellipse 90% 70% at 50% 30%,
+        black 25%,
+        transparent 92%
+    );
+    -webkit-mask-image: radial-gradient(
+        ellipse 90% 70% at 50% 30%,
+        black 25%,
+        transparent 92%
+    );
+}
+
+/* ==========================================================================
+   04 — HEADER & FLOATING ORBITAL DOCK
+   ========================================================================== */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    padding: 18px 0;
+    transition:
+        padding 0.35s var(--ease-smooth),
+        background 0.35s var(--ease-smooth),
+        backdrop-filter 0.35s var(--ease-smooth),
+        border-color 0.35s var(--ease-smooth);
+}
+
+.header.scrolled {
+    padding: 12px 0;
+    background: rgba(3, 7, 18, 0.85);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border-bottom: 1px solid var(--border-starlight);
+    box-shadow: 
+        0 15px 40px -10px rgba(0, 0, 0, 0.8),
+        0 0 30px -10px rgba(59, 130, 246, 0.15);
+}
+
+.navbar {
+    width: min(calc(100% - 50px), var(--max-width));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Starship Logo */
+.logo {
+    display: inline-flex;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 850;
+    letter-spacing: -2px;
+    color: var(--text-pure);
+    transition: transform 0.3s var(--ease-spring);
+}
+
+.logo span {
+    color: var(--nebula-cyan);
+    margin-left: 2px;
+    font-weight: 800;
+    text-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+    transition: transform 0.35s var(--ease-spring), color 0.3s ease;
+}
+
+.logo:hover {
+    transform: translateY(-1px) scale(1.02);
+}
+
+.logo:hover span {
+    transform: rotate(90deg) scale(1.15);
+    color: #ffffff;
+}
+
+/* Floating Space Capsule Dock */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px;
+    list-style: none;
+    border-radius: var(--radius-pill);
+    background: rgba(10, 17, 38, 0.65);
+    border: 1px solid var(--border-starlight);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.08),
+        0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+.nav-links a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 18px;
+    border-radius: var(--radius-pill);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+    transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        transform 0.3s var(--ease-spring);
+}
+
+.nav-links a:hover {
+    color: var(--text-pure);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-1px);
+}
+
+.nav-links a.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 650;
+    box-shadow: 
+        0 4px 20px rgba(59, 130, 246, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Mobile Toggle */
+.menu-btn {
+    display: none;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-pure);
+    font-size: 20px;
+    border: 1px solid var(--border-starlight);
+    border-radius: 12px;
+    background: rgba(10, 17, 38, 0.6);
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-btn:hover {
+    border-color: var(--nebula-cyan);
+    color: var(--nebula-cyan);
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   05 — HERO SECTION
+   ========================================================================== */
+
+.hero {
+    width: min(calc(100% - 50px), var(--max-width));
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 160px 0 100px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    align-items: center;
+    column-gap: 60px;
+    position: relative;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+}
+
+/* Orbiting Mission Eyebrow */
+.hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding: 6px 16px;
+    border-radius: var(--radius-pill);
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    color: var(--nebula-cyan);
+    font-size: 11px;
+    font-weight: 750;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+}
+
+.hero-label::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--nebula-cyan);
+    box-shadow: 0 0 10px var(--nebula-cyan);
+    animation: pulsarBeep 2s infinite ease-in-out;
+}
+
+@keyframes pulsarBeep {
+    0%, 100% { opacity: 0.3; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* Galactic Chrome Title */
+.hero h1 {
+    font-size: clamp(52px, 6vw, 92px);
+    line-height: 0.95;
+    letter-spacing: -4px;
+    font-weight: 850;
+    color: var(--text-pure);
+    margin-bottom: 28px;
+    background: linear-gradient(165deg, #ffffff 40%, #c7d9fc 75%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero h1 span {
+    display: inline-block;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--nebula-cyan);
+    -webkit-text-fill-color: transparent;
+    margin-left: 6px;
+    filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.5));
+    transition: transform 0.4s var(--ease-spring), filter 0.3s ease;
+}
+
+.hero h1:hover span {
+    transform: translateY(-3px) scale(1.06);
+    filter: drop-shadow(0 0 30px var(--nebula-blue));
+}
+
+.hero h2 {
+    max-width: 680px;
+    font-size: clamp(20px, 1.9vw, 28px);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.7px;
+    color: #cbd5e1;
+    margin-bottom: 22px;
+}
+
+.hero-description {
+    max-width: 580px;
+    font-size: 15.5px;
+    line-height: 1.85;
+    color: var(--text-secondary);
+    margin-bottom: 38px;
+}
+
+/* ==========================================================================
+   06 — BUTTONS & QUANTUM LINKS
+   ========================================================================== */
+
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+}
+
+.btn {
+    min-height: 52px;
+    padding: 0 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: var(--radius-pill);
+    font-size: 13.5px;
+    font-weight: 650;
+    letter-spacing: -0.1px;
+    cursor: pointer;
+    overflow: hidden;
+    will-change: transform;
+    transition:
+        transform 0.4s var(--ease-spring),
+        box-shadow 0.4s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
+}
+
+.btn:active {
+    transform: scale(0.97) !important;
+}
+
+/* Stardust Shimmer Sweep */
+.btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        110deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.25) 50%,
+        transparent 80%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.75s ease;
+}
+
+.btn:hover::before {
+    transform: translateX(120%);
+}
+
+/* Primary Starlight Capsule */
+.btn-primary {
+    color: #020617;
+    background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 50%, #bae6fd 100%);
+    box-shadow:
+        0 10px 25px rgba(56, 189, 248, 0.3),
+        inset 0 1px 1px #ffffff;
+}
+
+.btn-primary:hover {
+    box-shadow:
+        0 15px 40px rgba(56, 189, 248, 0.45),
+        0 0 30px rgba(59, 130, 246, 0.5);
+}
+
+/* Secondary Obsidian Shield */
+.btn-secondary {
+    color: var(--text-pure);
+    background: rgba(10, 17, 38, 0.6);
+    border: 1px solid var(--border-starlight);
+    backdrop-filter: blur(16px);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+.btn-secondary:hover {
+    background: rgba(18, 28, 58, 0.7);
+    border-color: var(--border-nebula);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+/* Social Starlight Pills */
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 18px;
+    border-radius: var(--radius-pill);
+    background: rgba(10, 17, 38, 0.5);
+    border: 1px solid var(--border-starlight);
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--nebula-cyan);
+    background: rgba(56, 189, 248, 0.08);
+    border-color: var(--border-nebula);
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+}
+
+.hero-visual .profile-avatar img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* ==========================================================================
+   07 — REDESIGNED SQUIRCLE PROFILE CHASSIS & PHOTO (STUDIO FRAME)
+   ========================================================================== */
+
+.hero-visual,
+.profile-card {
+    width: 100%;
+    max-width: 390px;
+    margin: 0 0 0 auto;
+    padding: 32px 28px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 4;
+    border-radius: 32px;
+    background: linear-gradient(
+        165deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(10, 17, 38, 0.88) 50%,
+        rgba(56, 189, 248, 0.04) 100%
+    );
+    border: 1px solid var(--border-starlight);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    box-shadow: var(--shadow-chassis);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition:
+        transform 0.45s var(--ease-spring),
+        box-shadow 0.45s ease,
+        border-color 0.4s ease;
+}
+
+.hero-visual:hover {
+    border-color: var(--border-nebula);
+    box-shadow: var(--shadow-elevated);
+}
+
+/* Modern Luxury Squircle Frame (Replaces the Circle) */
+.profile-avatar {
+    position: relative;
+    width: 100%;
+    max-width: 290px;
+    aspect-ratio: 1 / 1; /* Perfectly square proportions */
+    margin: 0 auto 22px;
+    border-radius: 26px; /* Smooth luxury curvature */
+    padding: 6px;
+    background: linear-gradient(
+        140deg,
+        rgba(56, 189, 248, 0.45) 0%,
+        rgba(139, 92, 246, 0.35) 50%,
+        rgba(255, 255, 255, 0.08) 100%
+    );
+    box-shadow:
+        0 20px 45px -10px rgba(0, 0, 0, 0.85),
+        0 0 30px -5px rgba(56, 189, 248, 0.2),
+        inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition:
+        transform 0.45s var(--ease-spring),
+        box-shadow 0.45s ease,
+        background 0.45s ease;
+}
+
+.profile-avatar:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+        0 25px 60px -10px rgba(0, 0, 0, 0.95),
+        0 0 45px rgba(56, 189, 248, 0.35);
+}
+
+/* Portrait Image (Never stretches or distorts) */
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;           /* Fits any image without distortion */
+    object-position: center 20%; /* Keeps head and shoulders perfectly framed */
+    border-radius: 20px;         /* Seamless matching inner squircle */
+    background: var(--cosmos-void);
+    display: block;
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.75);
+    transition: transform 0.5s var(--ease-smooth);
+}
+
+.profile-avatar:hover img {
+    transform: scale(1.04);
+}
+
+/* Card Text */
+.hero-visual p {
+    font-size: 21px;
+    font-weight: 750;
+    letter-spacing: -0.6px;
+    color: var(--text-pure);
+    margin-bottom: 10px;
+    line-height: 1.25;
+}
+
+.hero-visual span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 16px;
+    border-radius: var(--radius-pill);
+    background: rgba(56, 189, 248, 0.06);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    font-size: 12px;
+    font-weight: 650;
+    color: var(--nebula-cyan);
+    letter-spacing: 0.2px;
+}
+
+/* Tablet (max-width: 1100px) */
+@media (max-width: 1100px) {
+    .hero-visual,
+    .profile-card {
+        max-width: 350px;
+        padding: 28px 22px 26px;
+    }
+
+    .profile-avatar {
+        max-width: 250px;
+        border-radius: 24px;
+    }
+
+    .profile-avatar img {
+        border-radius: 18px;
+    }
+}
+
+/* Mobile (max-width: 600px) */
+@media (max-width: 600px) {
+    .hero-visual,
+    .profile-card {
+        max-width: 320px;
+        padding: 26px 20px 24px;
+    }
+
+    .profile-avatar {
+        max-width: 220px;
+        border-radius: 22px;
+    }
+
+    .profile-avatar img {
+        border-radius: 16px;
+    }
+}
+
+/* ==========================================================================
+   08 — SECTIONS & STARLIGHT TITLES
+   ========================================================================== */
+
+.section {
+    width: min(calc(100% - 50px), var(--max-width));
+    margin: 0 auto;
+    padding: 135px 0;
+    position: relative;
+}
+
+.section-heading {
+    margin-bottom: 60px;
+}
+
+.section-heading > p {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3.5px;
+    color: var(--nebula-cyan);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-heading > p::after {
+    content: "";
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--nebula-cyan), transparent);
+}
+
+.section-heading h2 {
+    font-size: clamp(38px, 4.6vw, 68px);
+    font-weight: 850;
+    line-height: 1.02;
+    letter-spacing: -3px;
+    color: var(--text-pure);
+}
+
+.section-heading h2 span {
+    color: var(--text-muted);
+    font-weight: 750;
+    transition: color 0.4s ease;
+}
+
+.section-heading:hover h2 span {
+    color: var(--nebula-cyan);
+}
+
+/* ==========================================================================
+   09 — ABOUT SECTION & TELEMETRY STATS
+   ========================================================================== */
+
+.about {
+    position: relative;
+}
+
+.about::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: radial-gradient(
+        50% 1px at 50% 0%,
+        rgba(56, 189, 248, 0.3),
+        transparent 100%
+    );
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 70px;
+    align-items: start;
+}
+
+.about-text p {
+    font-size: 15.5px;
+    line-height: 1.85;
+    color: var(--text-secondary);
+    margin-bottom: 22px;
+}
+
+.about-text p:first-child {
+    font-size: 20px;
+    font-weight: 550;
+    line-height: 1.65;
+    color: var(--text-pure);
+    letter-spacing: -0.4px;
+}
+
+/* Stat Cards */
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.stat-card {
+    position: relative;
+    min-height: 175px;
+    padding: 28px 24px;
+    border-radius: var(--radius-card);
+    background: linear-gradient(
+        150deg,
+        rgba(255, 255, 255, 0.04) 0%,
+        var(--cosmos-card) 100%
+    );
+    border: 1px solid var(--border-starlight);
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-chassis);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition:
+        transform 0.45s var(--ease-spring),
+        border-color 0.35s ease,
+        box-shadow 0.45s ease;
+}
+
+.stat-card::after {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(56, 189, 248, 0.15) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+    transition: transform 0.6s var(--ease-spring);
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--border-nebula);
+    box-shadow:
+        0 20px 50px -10px rgba(0, 0, 0, 0.8),
+        0 0 30px rgba(56, 189, 248, 0.2);
+}
+
+.stat-card:hover::after {
+    transform: scale(1.6);
+}
+
+.stat-card strong {
+    font-size: 42px;
+    font-weight: 850;
+    line-height: 1;
+    letter-spacing: -2.5px;
+    background: linear-gradient(135deg, #ffffff 40%, var(--nebula-cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-card span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   10 — SKILLS ARSENAL
+   ========================================================================== */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.skill-card {
+    position: relative;
+    min-height: 275px;
+    padding: 32px 26px;
+    border-radius: var(--radius-card);
+    background: linear-gradient(
+        160deg,
+        rgba(255, 255, 255, 0.045) 0%,
+        var(--cosmos-card) 100%
+    );
+    border: 1px solid var(--border-starlight);
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-chassis);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    transition:
+        transform 0.45s var(--ease-spring),
+        border-color 0.35s ease,
+        box-shadow 0.45s ease;
+}
+
+.skill-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 85% 15%,
+        rgba(56, 189, 248, 0.12) 0%,
+        transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.skill-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--border-nebula);
+    box-shadow:
+        0 25px 65px -10px rgba(0, 0, 0, 0.8),
+        0 0 35px rgba(56, 189, 248, 0.2);
+}
+
+.skill-card:hover::before {
+    opacity: 1;
+}
+
+.skill-number {
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: 3px;
+    color: var(--nebula-cyan);
+}
+
+.skill-card h3 {
+    font-size: 23px;
+    font-weight: 750;
+    letter-spacing: -0.8px;
+    color: var(--text-pure);
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.skill-card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   11 — PROJECTS & LAUNCH PADS
+   ========================================================================== */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    position: relative;
+    min-height: 385px;
+    padding: 38px 34px;
+    border-radius: var(--radius-card);
+    background: linear-gradient(
+        155deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        var(--cosmos-card) 100%
+    );
+    border: 1px solid var(--border-starlight);
+    backdrop-filter: blur(24px);
+    box-shadow: var(--shadow-chassis);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition:
+        transform 0.45s var(--ease-spring),
+        border-color 0.35s ease,
+        box-shadow 0.45s ease;
+}
+
+.project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 85% 15%,
+        rgba(59, 130, 246, 0.15) 0%,
+        transparent 60%
+    );
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.project-card:hover {
+    border-color: var(--border-nebula);
+    box-shadow:
+        0 30px 80px -15px rgba(0, 0, 0, 0.85),
+        0 0 40px rgba(56, 189, 248, 0.25);
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+.project-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 70px;
+}
+
+.project-top span {
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+}
+
+/* Starship Launch Button */
+.project-top a {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(10, 17, 38, 0.6);
+    border: 1px solid var(--border-starlight);
+    color: var(--text-secondary);
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.35s var(--ease-spring);
+}
+
+.project-top a:hover {
+    color: #020617;
+    background: var(--nebula-cyan);
+    border-color: var(--nebula-cyan);
+    transform: rotate(45deg) scale(1.1);
+    box-shadow: 0 0 25px var(--nebula-cyan);
+}
+
+.project-card h3 {
+    font-size: 28px;
+    font-weight: 750;
+    line-height: 1.15;
+    letter-spacing: -1.2px;
+    color: var(--text-pure);
+    margin-bottom: 14px;
+}
+
+.project-card > p {
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    max-width: 580px;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.project-tech span {
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    background: rgba(10, 17, 38, 0.5);
+    border: 1px solid var(--border-starlight);
+    color: var(--text-secondary);
+    font-size: 11.5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .project-tech span {
+    border-color: rgba(56, 189, 248, 0.3);
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   12 — OPTICAL TIMELINE / EDUCATION
+   ========================================================================= */
+
+.timeline {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Luminous Space Fiber */
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 15px;
+    bottom: 15px;
+    width: 2px;
+    background: linear-gradient(
+        180deg,
+        var(--nebula-cyan) 0%,
+        var(--nebula-violet) 60%,
+        transparent 100%
+    );
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 55px;
+    margin-bottom: 45px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3.5px solid var(--cosmos-void);
+    box-shadow:
+        0 0 0 2px var(--nebula-cyan),
+        0 0 20px var(--nebula-cyan);
+    transition: transform 0.4s var(--ease-spring), box-shadow 0.4s ease;
+}
+
+.timeline-item:hover .timeline-dot {
+    transform: scale(1.3);
+    box-shadow:
+        0 0 0 3px #ffffff,
+        0 0 25px var(--nebula-cyan);
+}
+
+.timeline-content {
+    padding: 32px 30px;
+    border-radius: 24px;
+    background: linear-gradient(
+        150deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        var(--cosmos-card) 100%
+    );
+    border: 1px solid var(--border-starlight);
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-chassis);
+    transition:
+        transform 0.4s var(--ease-spring),
+        border-color 0.35s ease,
+        box-shadow 0.4s ease;
+}
+
+.timeline-content:hover {
+    transform: translateX(8px);
+    border-color: var(--border-nebula);
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6);
+}
+
+.timeline-content > span {
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: 3px;
+    color: var(--nebula-cyan);
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+.timeline-content h3 {
+    font-size: 24px;
+    font-weight: 750;
+    letter-spacing: -0.8px;
+    color: var(--text-pure);
+    margin-bottom: 12px;
+}
+
+.timeline-content p {
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.timeline-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   13 — CONTACT PORTAL
+   ========================================================================== */
+
+.contact {
+    width: 100%;
+    padding: 160px 24px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    border-top: 1px solid var(--border-starlight);
+    border-bottom: 1px solid var(--border-starlight);
+    background: radial-gradient(
+        circle at 50% 60%,
+        rgba(56, 189, 248, 0.08) 0%,
+        transparent 65%
+    );
+}
+
+.contact-container {
+    max-width: 840px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-label {
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: 4px;
+    color: var(--nebula-cyan);
+    margin-bottom: 20px;
+}
+
+.contact h2 {
+    font-size: clamp(44px, 6.5vw, 84px);
+    font-weight: 850;
+    line-height: 0.98;
+    letter-spacing: -4px;
+    color: var(--text-pure);
+    margin-bottom: 24px;
+}
+
+.contact h2 span {
+    color: var(--text-muted);
+}
+
+.contact-container > p:not(.contact-label) {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--text-secondary);
+    max-width: 580px;
+    margin: 0 auto 38px;
+}
+
+/* ==========================================================================
+   14 — FOOTER
+   ========================================================================== */
+
+.footer {
+    width: 100%;
+    padding: 55px 24px 28px;
+    background: #010309;
+}
+
+.footer-content {
+    width: min(100%, var(--max-width));
+    margin: 0 auto;
+    padding-bottom: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.footer-content p {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+}
+
+.footer-links a {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--nebula-cyan);
+}
+
+.footer-bottom {
+    width: min(100%, var(--max-width));
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-bottom p {
+    font-size: 11px;
+    color: var(--text-dim);
+}
+
+/* ==========================================================================
+   15 — GRAVITATIONAL CURSOR SPOTLIGHT & REVEALS
+   ========================================================================== */
+
+.cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 380px;
+    height: 380px;
+    margin-top: -190px;
+    margin-left: -190px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(56, 189, 248, 0.1) 0%,
+        rgba(139, 92, 246, 0.06) 40%,
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: 9990;
+    mix-blend-mode: screen;
+    filter: blur(26px);
+    will-change: transform;
+    transition: opacity 0.4s ease;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.85s var(--ease-spring),
+        transform 0.85s var(--ease-spring);
+    will-change: opacity, transform;
+}
+
+.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   16 — RESPONSIVE ADAPTATIONS
+   ========================================================================== */
+
+@media (max-width: 1100px) {
+    .hero {
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        column-gap: 40px;
+    }
+
+    .hero-visual,
+    .profile-card {
+        max-width: 360px;
+        padding: 38px 24px 30px;
+    }
+
+    .profile-avatar {
+        width: 200px;
+        height: 200px;
+        min-width: 200px;
+        min-height: 200px;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .nav-links {
+        display: none;
+    }
+
+    .menu-btn {
+        display: flex;
+    }
+
+    .nav-links.mobile-active {
+        position: absolute;
+        top: 76px;
+        left: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        padding: 12px;
+        border-radius: 20px;
+        background: rgba(4, 8, 20, 0.98);
+        border: 1px solid var(--border-nebula);
+        backdrop-filter: blur(30px);
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9);
+    }
+
+    .nav-links.mobile-active a {
+        padding: 14px 18px;
+        border-radius: 12px;
+        font-size: 14px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 55px;
+        text-align: center;
+        padding: 130px 0 80px;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-visual,
+    .profile-card {
+        margin: 0 auto;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        width: calc(100% - 32px);
+    }
+
+    .hero {
+        width: calc(100% - 32px);
+        padding: 115px 0 65px;
+    }
+
+    .hero h1 {
+        font-size: clamp(42px, 13vw, 62px);
+        letter-spacing: -3px;
+    }
+
+    .hero-buttons {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .hero-visual,
+    .profile-card {
+        max-width: 320px;
+        padding: 32px 20px 28px;
+    }
+
+    .profile-avatar {
+        width: 180px;
+        height: 180px;
+        min-width: 180px;
+        min-height: 180px;
+    }
+
+    .section {
+        width: calc(100% - 32px);
+        padding: 95px 0;
+    }
+
+    .about-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card {
+        padding: 30px 24px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .cursor-glow {
+        display: none;
+    }
+}
